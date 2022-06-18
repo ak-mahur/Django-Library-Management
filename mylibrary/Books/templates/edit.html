@@ -1,0 +1,47 @@
+
+{% extends "base.html" %}
+
+{% block base1 %}
+
+
+<div class="" style="margin-left:15px;margin-bottom:0px;">
+    <br>
+	<h3>{{title}}</h3>
+	<hr>
+
+    <a href="/del/{{id}}"><button type="button" class="btn btn-primary" style="background-color: #7a663d;">Delete Book</button></a>
+    <br>
+    <br>
+</div>
+
+
+
+<div class="col-sm-12 col-md-12 col-lg-12" >
+    <form action=""  method='POST'>
+          <div class="form-group">
+            <label for="title">Book Title:</label>
+            <input type="text" class="form-control" name="title" value="{{data.title}}" required>
+           </div>
+
+          <div class="form-group">
+            <label for="author">Name of Author:</label>
+            <input type="text" class="form-control" name="author" value="{{data.author}}" >
+          </div>
+
+          <div class="form-group">
+            <label for="genre">Genre of Book:</label>
+            <input type="text" class="form-control" name="genre" value="{{data.genre}}">
+          </div>
+
+          <div class="form-group">
+            <label for="pub_date">Date Published:</label>
+            <input type="date" id="date" class="form-control" name="pub_date" value="{{data.published_date}}">
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="background-color: #7a663d;">Update </button>
+
+          {% csrf_token %}
+    </form>
+</div>
+
+{% endblock %}
