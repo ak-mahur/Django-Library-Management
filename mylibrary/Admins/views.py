@@ -30,48 +30,6 @@ class Home(View):
 #==============================================================================#   
 
 #==============================================================================#
-def view_login(request):
-
-    title='Please login to continue'
-    domain_name = 'TFGridlex'
-
-    try:
-        if request.user.is_active:
-            return redirect('/')
-    except Exception as e:
-        pass
-
-    if request.method=='POST':
-        username = request.POST.get('username', None)
-        #print('username',username)
-        username = username.lower()
-        passwd = request.POST.get('password', None)
-
-        user = authenticate(username=username, password=passwd)
-        
-        # user = authenticate(username, password=passwd)
-        if user and user.is_active:
-            login(request, user)
-            userid = request.user.id
-            eid= user.id
-
-            if request.POST.get("next", None):
-                redirect_to = request.POST.get("next", None)
-            else:
-                redirect_to = '/home/'
-
-            return redirect(redirect_to)
-
-        else:
-            error_msg = "Your User ID & Password Combination is Incorrect"
-
-
-    next = request.GET.get('next', '')
-
-    return render(request, 'login.html', locals())
-# #==============================================================================#
-
-#==============================================================================#
 def view_logout(request):
     logout(request)
     return redirect('/login/')
